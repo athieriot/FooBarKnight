@@ -29,7 +29,23 @@ class FooBarKnightTestCases extends FunSuite {
     assert(fooBarKnight.fight(33) == "FooFooFoo")
   }
 
-  test("45 is divide by 3 and 5 and contains 5 twice so it writes : FooBarBar") {
+  test("45 is divide by 3 and 5 and contains 5 so it writes : FooBarBar") {
     assert(fooBarKnight.fight(45) == "FooBarBar")
+  }
+
+  test("51 is divide by 3 and contains 5 so it writes : FooBar") {
+    assert(fooBarKnight.fight(51) == "FooBar")
+  }
+
+  test("21 is divide by 3 and 7 so it writes : FooQix") {
+    assert(fooBarKnight.fight(21) == "FooQix")
+  }
+
+  test("13 contains 3 so it writes : Foo") {
+    assert(fooBarKnight.fight(13) == "Foo")
+  }
+
+  test("15 is divide by 3 and 5 and contains 5 so it writes : FooBarBar") {
+    assert(fooBarKnight.fight(15) == "FooBarBar")
   }
 }

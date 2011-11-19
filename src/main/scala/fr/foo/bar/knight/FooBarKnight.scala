@@ -17,7 +17,15 @@ object FooBarRules {
   val barDividedRule: KnightRule = DividedRule(5, "Bar")
   val barContainsRule: KnightRule = ContainsRule('5', "Bar")
 
-  val rules: List[KnightRule] = (fooDividedRule :: barDividedRule :: fooContainsRule :: barContainsRule :: Nil)
+  val qixDividedRule: KnightRule = DividedRule(7, "Qix")
+  val qixContainsRule: KnightRule = ContainsRule('7', "Qix")
+
+  val rules: List[KnightRule] = (fooDividedRule
+                                 :: barDividedRule
+                                 :: qixDividedRule
+                                    :: fooContainsRule
+                                    :: barContainsRule
+                                    :: qixContainsRule :: Nil)
 
   def define = rules
 
