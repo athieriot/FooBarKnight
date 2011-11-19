@@ -11,21 +11,20 @@ import rules.{DividedRule, KnightRule, ContainsRule}
 
 object FooBarRules {
 
-  val fooDividedRule: KnightRule = DividedRule(3, "Foo")
-  val fooContainsRule: KnightRule = ContainsRule('3', "Foo")
+  val foo = Pair(3, "Foo")
+  val bar = Pair(5, "Bar")
+  val qix = Pair(7, "Qix")
 
-  val barDividedRule: KnightRule = DividedRule(5, "Bar")
-  val barContainsRule: KnightRule = ContainsRule('5', "Bar")
+  val fooDividedRule: KnightRule = DividedRule(foo)
+  val barDividedRule: KnightRule = DividedRule(bar)
+  val qixDividedRule: KnightRule = DividedRule(qix)
 
-  val qixDividedRule: KnightRule = DividedRule(7, "Qix")
-  val qixContainsRule: KnightRule = ContainsRule('7', "Qix")
+  val fooBarQixContainsRule: KnightRule = ContainsRule(foo :: bar :: qix :: Nil)
 
   val rules: List[KnightRule] = (fooDividedRule
                                  :: barDividedRule
                                  :: qixDividedRule
-                                    :: fooContainsRule
-                                    :: barContainsRule
-                                    :: qixContainsRule :: Nil)
+                                    :: fooBarQixContainsRule :: Nil)
 
   def define = rules
 

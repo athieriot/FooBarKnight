@@ -1,5 +1,7 @@
 package fr.foo.bar.knight.rules
 
+import java.lang.{StringBuffer, StringBuilder}
+
 /**
  * Created by IntelliJ IDEA.
  * User: aurelien
@@ -7,11 +9,17 @@ package fr.foo.bar.knight.rules
  * Time: 20:10
  */
 
-case class ContainsRule(containCharacter: Char, achievementAward: String) extends KnightRule {
+case class ContainsRule(containsPairs: List[Pair[Int, String]]) extends KnightRule {
 
-  def stroke(number: Int): String = applyRule(number) match {
-    case n => achievementAward * n
+  def stroke(number: Int): String = applyRule(number)
+
+  private def applyRule(number: Int): String = {
+    //TODO: I have to do better
+    var stringNumber = number.toString
+
+    containsPairs.foreach(cp => stringNumber = stringNumber.replaceAll(cp._1.toString, cp._2))
+    stringNumber = stringNumber.replaceAll("[0-9]", "")
+
+    return stringNumber
   }
-
-  private def applyRule(number: Int): Int = number.toString.count(_ == containCharacter)
 }

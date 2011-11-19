@@ -48,4 +48,8 @@ class FooBarKnightTestCases extends FunSuite {
   test("15 is divide by 3 and 5 and contains 5 so it writes : FooBarBar") {
     assert(fooBarKnight.fight(15) == "FooBarBar")
   }
+
+  test("53 contains 5 and 3 so it writes : BarFoo") {
+    assert(fooBarKnight.fight(53) == "BarFoo")
+  }
 }
