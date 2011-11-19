@@ -1,6 +1,7 @@
 package fr.foo.bar.knight
 
-import rules.{FooContainsRule, FooDividedRule}
+import rules.{KnightRule, FooContainsRule, FooDividedRule}
+import collection.parallel.immutable.ParSeq
 
 /**
  * Created by IntelliJ IDEA.
@@ -17,6 +18,8 @@ object FooBarKnight {
   }
 
   def resolveEngagement(number: Int): String = {
-    FooDividedRule.stroke(number) + FooContainsRule.stroke(number)
+    val rules: List[KnightRule] = (FooDividedRule :: FooContainsRule :: Nil)
+
+    rules.collect{ case f => f.stroke(number) }.mkString
   }
 }

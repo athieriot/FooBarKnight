@@ -17,7 +17,5 @@ object FooDividedRule extends KnightRule {
     case _ => ""
   }
 
-  private def applyRule(number: Int): Int = {
-    number % DIVED_NUMBER
-  }
+  private def applyRule(number: Int): Int = number % DIVED_NUMBER
 }
