@@ -1,0 +1,11 @@
+# FooBarKnight
+##############
+
+My personnal implementation of the FooBarQix Problem: http://www.code-story.net/2011/11/16/foobarqix.html
+
+This project require sbt 0.11
+
+# Usage
+#######
+
+sbt run
