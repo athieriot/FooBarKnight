@@ -1,7 +1,6 @@
 package fr.foo.bar.knight
 
-import rules.{KnightRule, FooContainsRule, FooDividedRule}
-import collection.parallel.immutable.ParSeq
+import rules.{DividedRule, KnightRule, ContainsRule}
 
 /**
  * Created by IntelliJ IDEA.
@@ -12,14 +11,21 @@ import collection.parallel.immutable.ParSeq
 
 object FooBarKnight {
 
+  val fooDividedRule: KnightRule = DividedRule(3, "Foo")
+  val fooContainsRule: KnightRule = ContainsRule('3', "Foo")
+
+  val barDividedRule: KnightRule = DividedRule(5, "Bar")
+  val barContainsRule: KnightRule = ContainsRule('5', "Bar")
+
+  val rules: List[KnightRule] = (fooDividedRule :: barDividedRule :: fooContainsRule :: barContainsRule :: Nil)
+
   def fight(number: Int): String = resolveEngagement(number) match {
     case "" => number.toString
     case x => x
   }
 
   def resolveEngagement(number: Int): String = {
-    val rules: List[KnightRule] = (FooDividedRule :: FooContainsRule :: Nil)
-
     rules.collect{ case f => f.stroke(number) }.mkString
   }
+
 }
