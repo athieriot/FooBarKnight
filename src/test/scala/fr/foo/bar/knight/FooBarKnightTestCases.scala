@@ -22,4 +22,8 @@ class FooBarKnightTestCases extends FunSuite {
   test("3 is divide by 3 and contains 3 so it writes : FooFoo") {
     assert(FooBarKnight.fight(3) == "FooFoo")
   }
+
+  test("33 is divide by 3 and contains 3 twice so it writes : FooFooFoo") {
+    assert(FooBarKnight.fight(33) == "FooFooFoo")
+  }
 }

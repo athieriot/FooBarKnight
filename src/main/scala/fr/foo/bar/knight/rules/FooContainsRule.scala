@@ -9,11 +9,12 @@ package fr.foo.bar.knight.rules
 
 object FooContainsRule extends KnightRule {
 
-  private val CONTAIN_NUMBER = "3"
+  private val CONTAIN_CHAR = '3'
   private val FOO = "Foo"
 
-  def stroke(number: Int): String = (number.toString.contains(CONTAIN_NUMBER)) match {
-    case true => FOO
-    case false => ""
+  def stroke(number: Int): String = applyRule(number) match {
+    case n => FOO * n
   }
+
+  private def applyRule(number: Int): Int = number.toString.count(_ == CONTAIN_CHAR)
 }
