@@ -11,23 +11,25 @@ import org.scalatest.FunSuite
 
 class FooBarKnightTestCases extends FunSuite {
 
+  val fooBarKnight: Knight = Knight(FooBarRules.define)
+
   test("1 is divide by neither 3, 5 or 7 and does not contains 3, 5 or 7 so it writes : 1") {
-    assert(FooBarKnight.fight(1) == "1")
+    assert(fooBarKnight.fight(1) == "1")
   }
 
   test("6 is divide by 3 so it writes : Foo") {
-    assert(FooBarKnight.fight(6) == "Foo")
+    assert(fooBarKnight.fight(6) == "Foo")
   }
 
   test("3 is divide by 3 and contains 3 so it writes : FooFoo") {
-    assert(FooBarKnight.fight(3) == "FooFoo")
+    assert(fooBarKnight.fight(3) == "FooFoo")
   }
 
   test("33 is divide by 3 and contains 3 twice so it writes : FooFooFoo") {
-    assert(FooBarKnight.fight(33) == "FooFooFoo")
+    assert(fooBarKnight.fight(33) == "FooFooFoo")
   }
 
   test("45 is divide by 3 and 5 and contains 5 twice so it writes : FooBarBar") {
-    assert(FooBarKnight.fight(45) == "FooBarBar")
+    assert(fooBarKnight.fight(45) == "FooBarBar")
   }
 }

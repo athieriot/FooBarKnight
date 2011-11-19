@@ -9,7 +9,7 @@ import rules.{DividedRule, KnightRule, ContainsRule}
  * Time: 19:21
  */
 
-object FooBarKnight {
+object FooBarRules {
 
   val fooDividedRule: KnightRule = DividedRule(3, "Foo")
   val fooContainsRule: KnightRule = ContainsRule('3', "Foo")
@@ -19,13 +19,6 @@ object FooBarKnight {
 
   val rules: List[KnightRule] = (fooDividedRule :: barDividedRule :: fooContainsRule :: barContainsRule :: Nil)
 
-  def fight(number: Int): String = resolveEngagement(number) match {
-    case "" => number.toString
-    case x => x
-  }
-
-  def resolveEngagement(number: Int): String = {
-    rules.collect{ case f => f.stroke(number) }.mkString
-  }
+  def define = rules
 
 }
