@@ -1,5 +1,7 @@
 package fr.foo.bar.knight
 
+import rules.{FooContainsRule, FooDividedRule}
+
 /**
  * Created by IntelliJ IDEA.
  * User: aurelien
@@ -9,9 +11,12 @@ package fr.foo.bar.knight
 
 object FooBarKnight {
 
-  def fight(number: Int): String = number match {
-    case 1 => return "1"
-    case 3 => return "FooFoo"
-    case 6 => return "Foo"
+  def fight(number: Int): String = resolveEngagement(number) match {
+    case "" => number.toString
+    case x => x
+  }
+
+  def resolveEngagement(number: Int): String = {
+    FooDividedRule.stroke(number) + FooContainsRule.stroke(number)
   }
 }
