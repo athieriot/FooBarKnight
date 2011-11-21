@@ -7,15 +7,16 @@ package fr.foo.bar.knight.rules
  * Time: 20:10
  */
 
-case class DividedRule(divedPair: Pair[Int, String]) extends KnightRule {
+case class DividedRule(divedFactor: Int, achievementAward: String) extends KnightRule {
 
-  private val divedFactor = divedPair._1
-  private val achievementAward = divedPair._2
+  private val EMPTY_STRING = ""
+
+  private val MODULO_NO_REST = 0
 
   def stroke(number: Int): String = applyRule(number) match {
-    case 0 => achievementAward
-    case _ => ""
+    case MODULO_NO_REST => achievementAward
+    case _ => EMPTY_STRING
   }
 
-  private def applyRule(number: Int): Int = number % divedFactor
+  private def applyRule(number: Int) = number % divedFactor
 }

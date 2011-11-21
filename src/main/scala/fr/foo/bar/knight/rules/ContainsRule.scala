@@ -2,6 +2,7 @@ package fr.foo.bar.knight.rules
 
 import java.lang.{StringBuffer, StringBuilder}
 import javax.management.remote.rmi._RMIConnection_Stub
+import xml.dtd.EMPTY
 
 /**
  * Created by IntelliJ IDEA.
@@ -10,16 +11,18 @@ import javax.management.remote.rmi._RMIConnection_Stub
  * Time: 20:10
  */
 
-case class ContainsRule(containsPairs: List[Pair[Int, String]]) extends KnightRule {
+case class ContainsRule(containsMap: Map[String, String]) extends KnightRule {
 
-  val containsMap: Map[String, String] = containsPairs.collect{case p => (p._1.toString, p._2)}.toMap
+  private val EMPTY_STRING = ""
 
   def stroke(number: Int): String = applyRule(number)
 
-  private def applyRule(number: Int): String = {
+  private def applyRule(number: Int) = {
     number.toString.map {
-      case x if containsMap.contains(x.toString) => containsMap.apply(x.toString)
-      case y => ""
+      c => containsMap.get(c.toString) match {
+        case Some(x) => x
+        case None => EMPTY_STRING
+      }
     }.mkString
   }
 }
