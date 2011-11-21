@@ -1,6 +1,7 @@
 package fr.foo.bar.knight.rules
 
 import java.lang.{StringBuffer, StringBuilder}
+import javax.management.remote.rmi._RMIConnection_Stub
 
 /**
  * Created by IntelliJ IDEA.
@@ -11,15 +12,14 @@ import java.lang.{StringBuffer, StringBuilder}
 
 case class ContainsRule(containsPairs: List[Pair[Int, String]]) extends KnightRule {
 
+  val containsMap: Map[String, String] = containsPairs.collect{case p => (p._1.toString, p._2)}.toMap
+
   def stroke(number: Int): String = applyRule(number)
 
   private def applyRule(number: Int): String = {
-    //TODO: I have to do better
-    var stringNumber = number.toString
-
-    containsPairs.foreach(cp => stringNumber = stringNumber.replaceAll(cp._1.toString, cp._2))
-    stringNumber = stringNumber.replaceAll("[0-9]", "")
-
-    return stringNumber
+    number.toString.map {
+      case x if containsMap.contains(x.toString) => containsMap.apply(x.toString)
+      case y => ""
+    }.mkString
   }
 }
