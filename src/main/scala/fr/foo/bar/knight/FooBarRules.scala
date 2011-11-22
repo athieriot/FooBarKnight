@@ -1,6 +1,6 @@
 package fr.foo.bar.knight
 
-import rules.{DividedRule, KnightRule, ContainsRule}
+import rules.{ContainsRule, DividedRule, KnightRule}
 
 /**
  * Created by IntelliJ IDEA.
@@ -9,18 +9,19 @@ import rules.{DividedRule, KnightRule, ContainsRule}
  * Time: 19:21
  */
 
-object FooBarRules {
+case class FooBarRules(awards: List[KnightAward]) {
 
-  val foo = KnightAward(3, "Foo")
-  val bar = KnightAward(5, "Bar")
-  val qix = KnightAward(7, "Qix")
+  def define: List[KnightRule] = dividedRules ::: containsRules
 
-  def define: List[KnightRule] = (DividedRule(foo.factor, foo.achievement)
-                               :: DividedRule(bar.factor, bar.achievement)
-                               :: DividedRule(qix.factor, qix.achievement)
-                               :: ContainsRule(Map(foo.factor.toString -> foo.achievement,
-                                                   bar.factor.toString -> bar.achievement,
-                                                   qix.factor.toString -> qix.achievement))
-                               :: Nil)
+  private def dividedRules = {
+    awards.collect {
+      case award => DividedRule(award.factor, award.achievement)
+    }
+  }
 
+  private def containsRules = {
+    List(ContainsRule(awards.collect {
+      case award => award.factor.toString -> award.achievement
+    }.toMap))
+  }
 }

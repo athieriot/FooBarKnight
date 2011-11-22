@@ -9,7 +9,11 @@ package fr.foo.bar.knight
 
 object DeadlyStruggle extends App {
 
-  val fooBarKnight = Knight(FooBarRules.define)
+  val foo = KnightAward(3, "Foo")
+  val bar = KnightAward(5, "Bar")
+  val qix = KnightAward(7, "Qix")
+
+  val fooBarKnight = Knight(FooBarRules(foo :: bar :: qix :: Nil).define)
 
   for (opponent <- 1 to 100) {
     println(fooBarKnight.fight(opponent))
